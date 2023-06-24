@@ -1,0 +1,13 @@
+<h3>Reviews:</h3>
+<div class="posts">
+  <div class="post header">
+    <div>Rating</div>
+    <div>Review</div>
+  </div>
+  <%= for post <- @posts do %>
+  <div class="post">
+    <div><%= post.rating %></div>
+    <div><%= post.body%></div>
+  </div>
+  <% end %>
+</div>

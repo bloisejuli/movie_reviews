@@ -1,0 +1,13 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="form-group">
+    <label>rating</label>
+    <%= text_input f, :rating, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label>Content</label>
+    <%= textarea f, :body, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= submit "Add review", class: "btn btn-primary" %>
+  </div>
+<% end %>
