@@ -1,9 +1,9 @@
 defmodule MovieReviewsWeb.MovieController do
   use MovieReviewsWeb, :controller
 
+  alias MovieReviews.Repo
   alias MovieReviews.Movies
   alias MovieReviews.Movies.Movie
-  alias MovieReviews.Repo
   alias MovieReviews.Posts.Post, as: Post
 
   def index(conn, _params) do

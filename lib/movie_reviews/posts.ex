@@ -5,8 +5,9 @@ defmodule MovieReviews.Posts do
 
   import Ecto.Query, warn: false
   alias MovieReviews.Repo
-
   alias MovieReviews.Posts.Post
+  alias MovieReviews.Comments
+  # alias MovieReviews.Posts
 
   @doc """
   Returns the list of posts.
@@ -100,5 +101,11 @@ defmodule MovieReviews.Posts do
   """
   def change_post(%Post{} = post, attrs \\ %{}) do
     Post.changeset(post, attrs)
+  end
+
+  def add_comment(post_id, comment_params) do
+    comment_params
+    |> Map.put("post_id", post_id)
+    |> Comments.create_comment()
   end
 end

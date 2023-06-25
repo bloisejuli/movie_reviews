@@ -19,7 +19,9 @@ defmodule MovieReviewsWeb.Router do
     get("/", PageController, :index)
 
     resources("/movies", MovieController) do
-      post "/post", MovieController, :add_post
+      post "/post", MovieController, :add_post do
+        post "/comment", PostController, :add_comment
+      end
     end
   end
 

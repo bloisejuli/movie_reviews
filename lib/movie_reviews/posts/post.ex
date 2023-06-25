@@ -1,11 +1,13 @@
 defmodule MovieReviews.Posts.Post do
   use Ecto.Schema
   import Ecto.Changeset
+  alias MovieReviews.Comments.Comment
 
   schema "posts" do
     field :body, :string
     field :rating, :integer
     field :movie_id, :id
+    has_many :comments, Comment
 
     timestamps()
   end
