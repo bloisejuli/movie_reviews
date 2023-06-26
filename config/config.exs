@@ -26,6 +26,14 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :movie_reviews, :pow,
+  web_module: MovieReviewsWeb,
+  user: MovieReviews.Users.User,
+  repo: MovieReviews.Repo
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+config :movie_reviews, :base_url, "https://api.themoviedb.org/3"
+config :movie_reviews, :api_key, "e1ad0f689f3ac23b2469621fb3f23b02"

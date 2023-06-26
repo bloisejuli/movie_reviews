@@ -1,5 +1,6 @@
 defmodule MovieReviewsWeb.Router do
   use MovieReviewsWeb, :router
+  use Pow.Phoenix.Router
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -13,8 +14,19 @@ defmodule MovieReviewsWeb.Router do
     plug(:accepts, ["json"])
   end
 
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
+  end
+
+  scope "/" do
+    pipe_through :browser
+
+    pow_routes()
+  end
+
   scope "/", MovieReviewsWeb do
-    pipe_through(:browser)
+    pipe_through([:browser, :protected])
 
     get("/", PageController, :index)
 
@@ -23,6 +35,9 @@ defmodule MovieReviewsWeb.Router do
         post "/comment", PostController, :add_comment
       end
     end
+
+    # get "/movies/genre/:genre_id", MovieController, :movies_by_genre
+    # get "/genre_list", MovieController, :genre_list
   end
 
   # Other scopes may use custom stacks.
