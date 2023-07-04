@@ -1,16 +1,13 @@
 <h1>Show Movie</h1>
 
 <ul>
-
   <li>
     <strong>Title:</strong>
     <%= @movie.title %>
   </li>
-
 </ul>
 
-<%= render "post_form.html", movie: @movie, changeset: @changeset, action:
-Routes.movie_movie_path(@conn, :add_post, @movie) %>
+<%= render "post_form.html", movie: @movie, changeset: @changeset, action: Routes.movie_movie_path(@conn, :add_post, @movie) %>
 <%= render "posts.html", posts: @movie.posts %>
 
 <span><%= link "Edit", to: Routes.movie_path(@conn, :edit, @movie) %></span>

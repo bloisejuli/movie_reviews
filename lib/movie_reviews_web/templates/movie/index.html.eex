@@ -19,6 +19,8 @@
         <span><%= link "Delete", to: Routes.movie_path(@conn, :delete, movie), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
 
+
+
       <td><%= get_posts_count(movie.id) %></td>
     </tr>
 <% end %>

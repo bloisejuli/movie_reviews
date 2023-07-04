@@ -26,21 +26,31 @@ defmodule MovieReviewsWeb.Router do
   end
 
   scope "/", MovieReviewsWeb do
-    pipe_through([:browser, :protected])
+    pipe_through([:browser])
 
     get("/", PageController, :index)
+  end
+
+  scope "/", MovieReviewsWeb do
+    pipe_through([:browser, :protected])
 
     resources("/movies", MovieController) do
-      post "/post", MovieController, :add_post do
-        post "/comment", PostController, :add_comment
-      end
+      post "/post", MovieController, :add_post
+
+      # post "/post/id/comment", PostController, :add_comment
     end
+
+    get "/posts/:id", PostController, :show
+    post "/posts/:id/comment", PostController, :add_comment
+
+    # resources("movie/id/post", PostController) do
+    # end
 
     # get "/movies/genre/:genre_id", MovieController, :movies_by_genre
     # get "/genre_list", MovieController, :genre_list
   end
 
-  # Other scopes may use custom stacks.
+  # Other scopes may use custom stacks.Reviews:
   # scope "/api", MovieReviewsWeb do
   #   pipe_through :api
   # end

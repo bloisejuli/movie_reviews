@@ -7,6 +7,7 @@ defmodule MovieReviews.Posts.Post do
     field :body, :string
     field :rating, :integer
     field :movie_id, :id
+    field :user_id, :id
     has_many :comments, Comment
 
     timestamps()

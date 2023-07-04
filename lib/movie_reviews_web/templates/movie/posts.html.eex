@@ -8,6 +8,10 @@
   <div class="post">
     <div><%= post.rating %></div>
     <div><%= post.body%></div>
+    <a href="/posts/<%= post.id%>">
+      <button>read</button>
+    </a>
   </div>
+
   <% end %>
 </div>

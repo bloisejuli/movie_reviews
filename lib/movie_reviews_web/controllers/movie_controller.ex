@@ -1,10 +1,13 @@
 defmodule MovieReviewsWeb.MovieController do
+  alias MovieReviews.Users
+  # alias Hex.API.User
   use MovieReviewsWeb, :controller
 
   alias MovieReviews.Repo
   alias MovieReviews.Movies
   alias MovieReviews.Movies.Movie
   alias MovieReviews.Posts.Post, as: Post
+  # alias MovieReviews.MovieFinder
 
   def index(conn, _params) do
     movies = Movies.list_movies()
@@ -57,13 +60,13 @@ defmodule MovieReviewsWeb.MovieController do
     |> redirect(to: Routes.movie_path(conn, :index))
   end
 
-  def add_post(conn, %{"post" => post_params, "movie_id" => movie_id}) do
+  def add_post(conn, %{"post" => post_params, "movie_id" => movie_id, "user_id" => user_id}) do
     movie =
       movie_id
       |> Movies.get_movie!()
       |> Repo.preload([:posts])
 
-    case Movies.add_post(movie_id, post_params) do
+    case Movies.add_post(movie_id, post_params, user) do
       {:ok, _post} ->
         conn
         |> put_flash(:info, "Added post!")
@@ -85,4 +88,47 @@ defmodule MovieReviewsWeb.MovieController do
     changeset = Post.changeset(%Post{}, %{})
     render(conn, "show.html", movie: movie, changeset: changeset)
   end
+
+  # def movies_by_genre(conn, %{"genre_id" => genre_id}) do
+  #  case MovieFinder.get_movies_by_genre(genre_id) do
+  #    {:ok, movies} ->
+  #      render(conn, "movies_by_genre.html", movies: movies)
+  #
+  #    {:error, error} ->
+  #      conn
+  #      |> put_flash(:error, "Error al obtener películas por género: #{error}")
+  #      |> redirect(to: Routes.movie_path(conn, :index))
+  #  end
+  # end
+  #
+  # def genre_list(conn, _params) do
+  #  case MovieFinder.get_genre_list() do
+  #    {:ok, genre_list} ->
+  #      render(conn, "genre_list.html", genre_list: genre_list)
+  #
+  #    {:error, error} ->
+  #      conn
+  #      |> put_flash(:error, "Error al obtener la lista de géneros: #{error}")
+  #      |> redirect(to: Routes.movie_path(conn, :index))
+  #  end
+  # end
+  #
+  # def show(conn, %{"id" => id}) do
+  #  movie =
+  #    id
+  #    |> Movies.get_movie!()
+  #    |> Repo.preload([:posts])
+  #
+  #  changeset = Post.changeset(%Post{}, %{})
+  #
+  #  case MovieFinder.get_genre_list() do
+  #    {:ok, genre_list} ->
+  #      render(conn, "show.html", movie: movie, changeset: changeset, genre_list: genre_list)
+  #
+  #    {:error, error} ->
+  #      conn
+  #      |> put_flash(:error, "Error al obtener la lista de géneros: #{error}")
+  #      |> redirect(to: Routes.movie_path(conn, :index))
+  #  end
+  # end
 end

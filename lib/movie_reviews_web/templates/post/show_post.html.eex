@@ -1,0 +1,15 @@
+<h1>Show Review</h1>
+
+<h2><strong><%= @title %></strong></h2>
+<ul>
+  <li>
+    <strong>Rating:</strong>
+     <%= @post.rating %>
+  </li>
+  <li>
+     <%= @post.body %>
+  </li>
+</ul>
+
+<%= render "comment_form.html", post: @post, changeset: @changeset, action: Routes.post_path(@conn, :add_comment, @post) %>
+<%= render "comments.html", comments: @post.comments %>

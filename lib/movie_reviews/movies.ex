@@ -103,9 +103,10 @@ defmodule MovieReviews.Movies do
     Movie.changeset(movie, attrs)
   end
 
-  def add_post(movie_id, post_params) do
+  def add_post(movie_id, post_params, user_id) do
     post_params
     |> Map.put("movie_id", movie_id)
+    |> Map.put("user_id", user_id)
     |> Posts.create_post()
   end
 

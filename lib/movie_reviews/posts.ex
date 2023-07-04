@@ -7,6 +7,7 @@ defmodule MovieReviews.Posts do
   alias MovieReviews.Repo
   alias MovieReviews.Posts.Post
   alias MovieReviews.Comments
+  alias MovieReviews.Movies
   # alias MovieReviews.Posts
 
   @doc """
@@ -107,5 +108,9 @@ defmodule MovieReviews.Posts do
     comment_params
     |> Map.put("post_id", post_id)
     |> Comments.create_comment()
+  end
+
+  def get_movie(movie_id) do
+    Movies.get_movie!(movie_id)
   end
 end
