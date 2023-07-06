@@ -24,6 +24,7 @@
       <td><%= get_posts_count(movie.id) %></td>
     </tr>
 <% end %>
+<span><%= link "MovieRandom", to: Routes.movie_path(@conn, :show, get_random_movie(@movies)) %></span>
   </tbody>
 </table>
 

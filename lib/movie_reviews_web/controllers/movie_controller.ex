@@ -1,12 +1,13 @@
 defmodule MovieReviewsWeb.MovieController do
-  alias MovieReviews.Users
+  # alias MovieReviews.Users
   # alias Hex.API.User
   use MovieReviewsWeb, :controller
-
+  import Pow.Plug
   alias MovieReviews.Repo
   alias MovieReviews.Movies
   alias MovieReviews.Movies.Movie
   alias MovieReviews.Posts.Post, as: Post
+
   # alias MovieReviews.MovieFinder
 
   def index(conn, _params) do
@@ -60,13 +61,15 @@ defmodule MovieReviewsWeb.MovieController do
     |> redirect(to: Routes.movie_path(conn, :index))
   end
 
-  def add_post(conn, %{"post" => post_params, "movie_id" => movie_id, "user_id" => user_id}) do
+  def add_post(conn, %{"post" => post_params, "movie_id" => movie_id}) do
+    user = current_user(conn)
+
     movie =
       movie_id
       |> Movies.get_movie!()
       |> Repo.preload([:posts])
 
-    case Movies.add_post(movie_id, post_params, user) do
+    case Movies.add_post(movie_id, post_params, user.id) do
       {:ok, _post} ->
         conn
         |> put_flash(:info, "Added post!")
