@@ -36,12 +36,14 @@ defmodule MovieReviewsWeb.Router do
 
     resources("/movies", MovieController) do
       post "/post", MovieController, :add_post
-
-      # post "/post/id/comment", PostController, :add_comment
     end
 
-    get "/posts/:id", PostController, :show
-    post "/posts/:id/comment", PostController, :add_comment
+    resources("/posts", PostController) do
+      post "/comment", PostController, :add_comment
+    end
+
+    # get "/posts/:id", PostController, :show
+    # post "/posts/:id/comment", PostController, :add_comment
 
     get "/movie_random", MovieRandomController, :show
     # resources("movie/id/post", PostController) do

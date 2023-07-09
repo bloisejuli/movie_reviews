@@ -104,9 +104,10 @@ defmodule MovieReviews.Posts do
     Post.changeset(post, attrs)
   end
 
-  def add_comment(post_id, comment_params) do
+  def add_comment(post_id, comment_params, user_id) do
     comment_params
     |> Map.put("post_id", post_id)
+    |> Map.put("user_id", user_id)
     |> Comments.create_comment()
   end
 

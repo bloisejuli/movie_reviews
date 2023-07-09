@@ -5,3 +5,15 @@ e1ad0f689f3ac23b2469621fb3f23b02
 API Read Access Token:
 eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMWFkMGY2ODlmM2FjMjNiMjQ2OTYyMWZiM2YyM2IwMiIsInN1YiI6IjY0OTZlZWY2YjM0NDA5MDEzOTgzZmYzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Oxe1xwQ3pSOkF3CIGIMZhhP0jXqIY3C4cGFg9NBuQqw
 
+
+JSONS:
+https://api.themoviedb.org/3/movie/157336?api_key=e1ad0f689f3ac23b2469621fb3f23b02
+https://api.themoviedb.org/3/movie/popular?api_key=#{e1ad0f689f3ac23b2469621fb3f23b02}
+
+
+
+export TMDB_CLIENT_API_KEY=e1ad0f689f3ac23b2469621fb3f23b02
+export SESSION_ENCRYPTION_SALT=xlfG195qvnbpKHRcFL1/hUpV2Fcz2UjVl15kAcMa59GggO7SUFzD0nNrU83vzfP8
+export SECRET_KEY_BASE=xlfG195qvnbpKHRcFL1/hUpV2Fcz2UjVl15kAcMa59GggO7SUFzD0nNrU83vzfP8
+export ADMIN_USER=postgres
+export ADMIN_PASSWORD=postgres

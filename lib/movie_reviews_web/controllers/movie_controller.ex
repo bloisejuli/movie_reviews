@@ -2,6 +2,7 @@ defmodule MovieReviewsWeb.MovieController do
   # alias MovieReviews.Users
   # alias Hex.API.User
   use MovieReviewsWeb, :controller
+
   import Pow.Plug
   alias MovieReviews.Repo
   alias MovieReviews.Movies

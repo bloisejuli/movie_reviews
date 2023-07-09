@@ -6,9 +6,9 @@ defmodule MovieReviews.CommentsTest do
   describe "comments" do
     alias MovieReviews.Comments.Comment
 
-    @valid_attrs %{content: "some content", name_user: "some name_user"}
-    @update_attrs %{content: "some updated content", name_user: "some updated name_user"}
-    @invalid_attrs %{content: nil, name_user: nil}
+    @valid_attrs %{content: "some content", user_id: "some user_id"}
+    @update_attrs %{content: "some updated content", user_id: "some updated user_id"}
+    @invalid_attrs %{content: nil, user_id: nil}
 
     def comment_fixture(attrs \\ %{}) do
       {:ok, comment} =
@@ -32,7 +32,7 @@ defmodule MovieReviews.CommentsTest do
     test "create_comment/1 with valid data creates a comment" do
       assert {:ok, %Comment{} = comment} = Comments.create_comment(@valid_attrs)
       assert comment.content == "some content"
-      assert comment.name_user == "some name_user"
+      assert comment.user_id == "some user_id"
     end
 
     test "create_comment/1 with invalid data returns error changeset" do
@@ -43,7 +43,7 @@ defmodule MovieReviews.CommentsTest do
       comment = comment_fixture()
       assert {:ok, %Comment{} = comment} = Comments.update_comment(comment, @update_attrs)
       assert comment.content == "some updated content"
-      assert comment.name_user == "some updated name_user"
+      assert comment.user_id == "some updated user_id"
     end
 
     test "update_comment/2 with invalid data returns error changeset" do

@@ -4,7 +4,7 @@ defmodule MovieReviews.Comments.Comment do
 
   schema "comments" do
     field :content, :string
-    field :name_user, :string
+    field :user_id, :id
     field :post_id, :id
 
     timestamps()
@@ -13,7 +13,7 @@ defmodule MovieReviews.Comments.Comment do
   @doc false
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:name_user, :content, :post_id])
-    |> validate_required([:name_user, :content, :post_id])
+    |> cast(attrs, [:user_id, :content, :post_id])
+    |> validate_required([:user_id, :content, :post_id])
   end
 end

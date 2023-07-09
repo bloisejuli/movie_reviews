@@ -1,9 +1,9 @@
 defmodule MovieReviewsWeb.PostController do
   use MovieReviewsWeb, :controller
 
+  import Pow.Plug
   alias MovieReviews.Repo
   alias MovieReviews.Posts
-  # alias MovieReviews.Posts.Post
   alias MovieReviews.Movies
   alias MovieReviews.Comments.Comment, as: Comment
 
@@ -18,12 +18,14 @@ defmodule MovieReviewsWeb.PostController do
   #  end
 
   def add_comment(conn, %{"comment" => comment_params, "post_id" => post_id}) do
+    user = current_user(conn)
+
     post =
       post_id
       |> Posts.get_post!()
       |> Repo.preload([:comments])
 
-    case Posts.add_comment(post_id, comment_params) do
+    case Posts.add_comment(post_id, comment_params, user.id) do
       {:ok, _comment} ->
         conn
         |> put_flash(:info, "Added comment!")
