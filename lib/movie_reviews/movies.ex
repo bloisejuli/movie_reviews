@@ -4,6 +4,7 @@ defmodule MovieReviews.Movies do
   """
 
   import Ecto.Query, warn: false
+  # alias MovieReviews.Validatable
   alias MovieReviews.Posts
   alias MovieReviews.Repo
   alias MovieReviews.Movies.Movie

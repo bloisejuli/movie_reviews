@@ -6,6 +6,7 @@ defmodule MovieReviewsWeb.PostController do
   alias MovieReviews.Posts
   alias MovieReviews.Movies
   alias MovieReviews.Comments.Comment, as: Comment
+  import MovieReviewsWeb.ValidationHelpers
 
   def index(conn, _params) do
     posts = Posts.list_posts()
@@ -25,15 +26,23 @@ defmodule MovieReviewsWeb.PostController do
       |> Posts.get_post!()
       |> Repo.preload([:comments])
 
-    case Posts.add_comment(post_id, comment_params, user.id) do
-      {:ok, _comment} ->
-        conn
-        |> put_flash(:info, "Added comment!")
-        |> redirect(to: Routes.post_path(conn, :show, post))
+    case validate_prohibited_words(comment_params["content"]) do
+      {:ok, validated_params} ->
+        case Posts.add_comment(post_id, validated_params, user.id) do
+          {:ok, _comment} ->
+            conn
+            |> put_flash(:info, "Added comment!")
+            |> redirect(to: Routes.post_path(conn, :show, post))
 
-      {:error, _error} ->
+          {:error, _error} ->
+            conn
+            |> put_flash(:error, "Oops! Couldn't add comment!")
+            |> redirect(to: Routes.post_path(conn, :show, post))
+        end
+
+      {:error, error_message} ->
         conn
-        |> put_flash(:error, "Oops! Couldn't add comment!")
+        |> put_flash(:error, error_message)
         |> redirect(to: Routes.post_path(conn, :show, post))
     end
   end

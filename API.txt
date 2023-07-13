@@ -12,8 +12,4 @@ https://api.themoviedb.org/3/movie/popular?api_key=#{e1ad0f689f3ac23b2469621fb3f
 
 
 
-export TMDB_CLIENT_API_KEY=e1ad0f689f3ac23b2469621fb3f23b02
-export SESSION_ENCRYPTION_SALT=xlfG195qvnbpKHRcFL1/hUpV2Fcz2UjVl15kAcMa59GggO7SUFzD0nNrU83vzfP8
-export SECRET_KEY_BASE=xlfG195qvnbpKHRcFL1/hUpV2Fcz2UjVl15kAcMa59GggO7SUFzD0nNrU83vzfP8
-export ADMIN_USER=postgres
-export ADMIN_PASSWORD=postgres
+
