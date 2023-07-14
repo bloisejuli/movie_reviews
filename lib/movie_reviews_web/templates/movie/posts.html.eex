@@ -1,17 +1,27 @@
 <h3>Reviews:</h3>
 <div class="posts">
-  <div class="post header">
-    <div>Rating</div>
-    <div>Review</div>
-  </div>
-  <%= for post <- @posts do %>
-  <div class="post">
-    <div><%= post.rating %></div>
-    <div><%= post.body%></div>
-    <a href="/posts/<%= post.id%>">
-      <button>read</button>
-    </a>
-  </div>
-
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Score</th>
+        <th>Review</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for post <- @posts do %>
+      <tr>
+        <% user = MovieReviewsWeb.Tools.get_username(post.user_id) %>
+        <td><%= user %></td>
+        <td><%= post.rating %></td>
+        <td><%= post.body %></td>
+        <td>
+          <a href="/posts/<%= post.id %>">
+            <button>Read</button>
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

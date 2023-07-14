@@ -1,4 +1,6 @@
-defmodule MovieReviewsWeb.ValidationHelpers do
+defmodule MovieReviewsWeb.Tools do
+  alias MovieReviews.Repo
+
   @prohibited_words [
     "fuck",
     "imdb",
@@ -34,5 +36,10 @@ defmodule MovieReviewsWeb.ValidationHelpers do
 
   def find_matching_tags(content) do
     Enum.filter(@tags, &String.contains?(String.downcase(content), &1))
+  end
+
+  def get_username(user_id) do
+    user = Repo.get(MovieReviews.Users.User, user_id)
+    String.split(user.email, "@") |> List.first()
   end
 end

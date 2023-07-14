@@ -1,6 +1,7 @@
 defmodule MovieReviewsWeb.MovieController do
   # alias MovieReviews.Users
   # alias Hex.API.User
+
   use MovieReviewsWeb, :controller
 
   import Pow.Plug
@@ -8,7 +9,7 @@ defmodule MovieReviewsWeb.MovieController do
   alias MovieReviews.Movies
   alias MovieReviews.Movies.Movie
   alias MovieReviews.Posts.Post, as: Post
-  import MovieReviewsWeb.ValidationHelpers
+  import MovieReviewsWeb.Tools
 
   # alias MovieReviews.MovieFinder
 

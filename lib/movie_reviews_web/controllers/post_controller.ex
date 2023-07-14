@@ -6,7 +6,7 @@ defmodule MovieReviewsWeb.PostController do
   alias MovieReviews.Posts
   alias MovieReviews.Movies
   alias MovieReviews.Comments.Comment, as: Comment
-  import MovieReviewsWeb.ValidationHelpers
+  import MovieReviewsWeb.Tools
 
   def index(conn, _params) do
     posts = Posts.list_posts()

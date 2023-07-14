@@ -42,15 +42,7 @@ defmodule MovieReviewsWeb.Router do
       post "/comment", PostController, :add_comment
     end
 
-    # get "/posts/:id", PostController, :show
-    # post "/posts/:id/comment", PostController, :add_comment
-
     get "/movie_random", MovieRandomController, :show
-    # resources("movie/id/post", PostController) do
-    # end
-
-    # get "/movies/genre/:genre_id", MovieController, :movies_by_genre
-    # get "/genre_list", MovieController, :genre_list
   end
 
   # Other scopes may use custom stacks.Reviews:

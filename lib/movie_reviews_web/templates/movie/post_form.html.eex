@@ -1,6 +1,6 @@
 <%= form_for @changeset, @action, fn f -> %>
   <div class="form-group">
-    <label>Rating</label>
+    <label>Score</label>
     <%= select f, :rating, 1..10, class: "form-control" %>
   </div>
   <div class="form-group">

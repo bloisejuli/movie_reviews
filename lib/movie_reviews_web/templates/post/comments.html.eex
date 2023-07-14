@@ -1,13 +1,18 @@
 <h3>Comments:</h3>
 <div class="comments">
-  <div class="comment header">
-    <div>User</div>
-    <div>Comment</div>
-  </div>
-  <%= for comment <- @comments do %>
-  <div class="comment">
-    <div><%= comment.content%></div>
-  </div>
-
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for comment <- @comments do %>
+    <tr>
+      <% user = MovieReviewsWeb.Tools.get_username(comment.user_id) %>
+      <td><%= user %></td>
+      <td><%= comment.content%></td>
+    </tr>
   <% end %>
 </div>

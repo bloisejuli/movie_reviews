@@ -4,8 +4,8 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Posts</th>
       <th></th>
+      <th>Reviews</th>
     </tr>
   </thead>
   <tbody>
@@ -15,8 +15,6 @@
 
       <td>
         <span><%= link "Show", to: Routes.movie_path(@conn, :show, movie) %></span>
-        <span><%= link "Edit", to: Routes.movie_path(@conn, :edit, movie) %></span>
-        <span><%= link "Delete", to: Routes.movie_path(@conn, :delete, movie), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
 
 
