@@ -65,6 +65,7 @@ defmodule MovieReviewsWeb.MovieController do
 
   def add_post(conn, %{"post" => post_params, "movie_id" => movie_id}) do
     user = current_user(conn)
+    tag = find_matching_tags(post_params["body"])
 
     movie =
       movie_id
@@ -72,8 +73,8 @@ defmodule MovieReviewsWeb.MovieController do
       |> Repo.preload([:posts])
 
     case validate_prohibited_words(post_params["body"]) do
-      {:ok, validated_params} ->
-        case Movies.add_post(movie_id, validated_params, user.id) do
+      {:ok, _} ->
+        case Movies.add_post(movie_id, post_params, user.id, List.first(tag)) do
           {:ok, _post} ->
             conn
             |> put_flash(:info, "Added post!")

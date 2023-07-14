@@ -8,6 +8,7 @@ defmodule MovieReviews.Posts.Post do
     field :rating, :integer
     field :movie_id, :id
     field :user_id, :id
+    field :tag, :string
     has_many :comments, Comment
 
     timestamps()
@@ -16,7 +17,7 @@ defmodule MovieReviews.Posts.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:rating, :body, :movie_id, :user_id])
-    |> validate_required([:rating, :body, :movie_id, :user_id])
+    |> cast(attrs, [:rating, :body, :movie_id, :user_id, :tag])
+    |> validate_required([:rating, :body, :movie_id, :user_id, :tag])
   end
 end
