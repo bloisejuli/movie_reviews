@@ -27,8 +27,8 @@ defmodule MovieReviewsWeb.PostController do
       |> Repo.preload([:comments])
 
     case validate_prohibited_words(comment_params["content"]) do
-      {:ok, validated_params} ->
-        case Posts.add_comment(post_id, validated_params, user.id) do
+      {:ok, _} ->
+        case Posts.add_comment(post_id, comment_params, user.id) do
           {:ok, _comment} ->
             conn
             |> put_flash(:info, "Added comment!")

@@ -18,6 +18,6 @@ defmodule MovieReviews.Posts.Post do
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:rating, :body, :movie_id, :user_id, :tag])
-    |> validate_required([:rating, :body, :movie_id, :user_id, :tag])
+    |> validate_required([:rating, :body, :movie_id, :user_id])
   end
 end

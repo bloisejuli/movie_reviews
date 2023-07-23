@@ -1,7 +1,4 @@
 defmodule MovieReviewsWeb.MovieController do
-  # alias MovieReviews.Users
-  # alias Hex.API.User
-
   use MovieReviewsWeb, :controller
 
   import Pow.Plug
@@ -10,8 +7,6 @@ defmodule MovieReviewsWeb.MovieController do
   alias MovieReviews.Movies.Movie
   alias MovieReviews.Posts.Post, as: Post
   import MovieReviewsWeb.Tools
-
-  # alias MovieReviews.MovieFinder
 
   def index(conn, _params) do
     movies = Movies.list_movies()
@@ -72,7 +67,6 @@ defmodule MovieReviewsWeb.MovieController do
       movie_id
       |> Movies.get_movie!()
       |> Repo.preload([:posts])
-
     case validate_prohibited_words(post_params["body"]) do
       {:ok, _} ->
         case Movies.add_post(movie_id, post_params, user.id, List.first(tag)) do

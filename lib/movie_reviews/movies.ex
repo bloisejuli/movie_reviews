@@ -32,9 +32,6 @@ defmodule MovieReviews.Movies do
   end
 
   def add_post(movie_id, post_params, user_id, tag) do
-    IO.puts("EL TAGGGGG")
-    IO.puts(tag)
-
     post_params
     |> Map.put("movie_id", movie_id)
     |> Map.put("user_id", user_id)
